@@ -1,0 +1,38 @@
+#!/bin/bash
+
+COMMAND=$1
+shift
+
+SCRIPT_DIR="$(dirname "$0")/lib"
+
+case "$COMMAND" in
+
+  restart)
+    bash "$SCRIPT_DIR/restart.sh" "$@"
+    ;;
+
+  logs)
+    bash "$SCRIPT_DIR/logs.sh" "$@"
+    ;;
+
+  health)
+    bash "$SCRIPT_DIR/health.sh"
+    ;;
+
+  disk)
+    bash "$SCRIPT_DIR/disk.sh"
+    ;;
+
+  cleanup)
+    bash "$SCRIPT_DIR/cleanup.sh"
+    ;;
+
+  *)
+    echo "Usage:"
+    echo "  dockerx restart <path> [service]"
+    echo "  dockerx logs <container>"
+    echo "  dockerx health"
+    echo "  dockerx disk"
+    echo "  dockerx cleanup"
+    ;;
+esac
